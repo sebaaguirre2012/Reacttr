@@ -1,53 +1,63 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import uuid from 'uuid';
+import firebase from 'firebase';
+
 import MessageList from './MessageList';
 import InputText from './InputText';
 import ProfileBar from './ProfileBar';
+
+const proptypes = {
+    user : PropTypes.object.isRequired,
+    onLogout : PropTypes.func.isRequired
+}   
 
 export default class Main extends Component {
     
     state = {
         user : Object.assign({}, this.props.user, { retweets : [] }, { favorites : [] }),
         openText : false,
-        messages : [{
-            id : uuid.v4(),
-            text : 'Mensaje de prueba!',
-            picture : 'https://thumbs.dreamstime.com/z/moda-masculina-del-estilo-del-inconformista-del-hombre-de-avatar-del-icono-del-perfil-62449823.jpg',
-            displayName : 'Seba Aguirre',
-            username : 'sebaaguirre',
-            userNameToReply : '',
-            date : Date.now() - 180000,
-            retweets : 0,
-            favorites : 0
-        }]
+        userNameToReply: '',
+        messages : []
     }
     
+    componentWillMount() {
+        const messagesRef = firebase.database().ref().child('messages')
+
+        messagesRef.on('child_added', snapshot => {
+            this.setState({
+                messages: this.state.messages.concat(snapshot.val()),
+                openText: false
+            })
+        })
+    }
+
     handleOpenText = e => {
         e.preventDefault();
-        this.setState( { openText : true } );
+        this.setState({ openText : true });
     }
 
     handleCloseText = e => {
         e.preventDefault();
-        this.setState( { openText : false } );
+        this.setState({ openText : false });
     }
 
     handleSendText = e => {
-        e.preventDefault();
-        let newMessage = {
-            id : uuid.v4(),
-            username : this.props.user.email.split('@')[0],
-            displayName : this.props.user.displayName,
-            picture : this.props.user.photoURL,
-            date : Date.now(),
-            text : e.target.text.value,
-            retweets : 0,
-            favorites : 0
+        e.preventDefault()
+        var newMessage = {
+            id: uuid.v4(),
+            username: this.state.user.email.split('@')[0],
+            displayName: this.state.user.displayName,
+            picture: this.state.user.photoURL,
+            date: Date.now(),
+            text: e.target.text.value,
+            favorites: 0,
+            retweets: 0
         }
-        this.setState({
-            messages : this.state.messages.concat([newMessage]),
-            openText : false
-        })
+
+        const messageRef = firebase.database().ref().child('messages'),
+              messageID = messageRef.push();
+        messageID.set(newMessage);
     }
 
     handleRetweet = msgId => {
@@ -115,6 +125,7 @@ export default class Main extends Component {
                     picture={this.props.user.photoURL}
                     username={this.props.user.email.split('@')[0]}
                     onOpenText={this.handleOpenText}
+                    onLogout={this.props.onLogout}
                 />
                 {this.renderOpenText()}
                 <MessageList 
@@ -127,3 +138,5 @@ export default class Main extends Component {
         )
     }
 }
+
+Main.propTypes = proptypes;

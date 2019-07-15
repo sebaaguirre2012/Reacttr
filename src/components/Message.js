@@ -1,6 +1,20 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import moment from 'moment';
 
+const proptypes = {
+    username: PropTypes.string.isRequired,
+    picture: PropTypes.string.isRequired,
+    displayName: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
+    date: PropTypes.number.isRequired,
+    numRetweets: PropTypes.number.isRequired,
+    numFavorites: PropTypes.number.isRequired,
+    onReplyTweet: PropTypes.func.isRequired,
+    onFavorite: PropTypes.func.isRequired,
+    onRetweet: PropTypes.func.isRequired
+}
 
 export default class Message extends Component {
     
@@ -24,14 +38,17 @@ export default class Message extends Component {
     }
 
     render() {
-        let dateFormat = moment(this.props.date).fromNow();
+        let dateFormat = moment(this.props.date).fromNow(),
+            userLink = `/user/${this.props.username}`;
 
         return (
             <div className='message'>
                 <div className='user'>
-                    <figure>
-                        <img className='avatar' src={this.props.picture} alt=''/>
-                    </figure>
+                    <Link to={userLink}>
+                        <figure>
+                            <img className='avatar' src={this.props.picture} alt=''/>
+                        </figure>
+                    </Link>
                     <span className='displayName'>{this.props.displayName}</span>
                     <span className='username'>{this.props.username}</span>
                     <span className='date'>{dateFormat}</span>
@@ -69,3 +86,6 @@ export default class Message extends Component {
         )
     }
 }
+
+Message.propTypes = proptypes;
+

@@ -134,3 +134,56 @@ body {
     border: 1px solid #226aa6;
     color: #fff;
 }
+
+/* PROFILE */
+
+.profile {
+    display: flex;
+    flex-flow: column wrap;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.avatar-profile {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 1rem auto;
+}
+
+.name {
+    font-weight: 700;
+    font-size: 20pt;
+    text-align: center;
+}
+
+.data {
+    list-style-type: none;
+    margin: 1rem 0;
+    padding: 0;
+}
+
+.data > li {
+    background: white;
+    padding: 1rem;
+    margin: 0;
+    border: 1px solid #ddd;
+    color: #777;
+}
+
+/* LOGIN */
+
+.login {
+    margin: 0 1rem;
+    text-align: center;
+}
+
+.text-login { color: #888 }
+
+.button-login {
+    border: #666;
+    border-radius: 5px;
+    padding: .5rem 1rem;
+    background: #aaa;
+    color: #eaeaea;
+}

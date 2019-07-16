@@ -11,19 +11,23 @@ const propTypes = {
 
 export default function ProfileBar ({ picture, username, onOpenText, onLogout }) {
     return (
-        <div className='profileBar'>
-            <Link to='/profile'>
-                <figure>
-                    <img className='avatar' src={picture} alt=''/>
-                </figure>
-            </Link>
-            <span className='username-pb'> Hola @{username}!</span>
-            <button onClick={onOpenText} className='button'>
-                <span className='fa fa-lg fa-edit'></span> Tweet!
-            </button>
-            <button onClick={onLogout} className='button'>
-                <span className='fa fa-sign-out'></span>Salir
-            </button>
+        <div className='profileBar d-flex justify-content-between'>
+            <div className='d-flex align-items-center'>
+                <Link to='/profile'>
+                    <figure>
+                        <img className='avatar mr-2' src={picture} alt=''/>
+                    </figure>
+                </Link>
+                <span className='username-pb'> Hola @{username}!</span>
+            </div>
+            <div>
+                <button onClick={onOpenText} className='button mr-3'>
+                    <span className='fa fa-lg fa-edit'></span> Tweet!
+                </button>
+                <button onClick={onLogout} className='button'>
+                    <span className='fa fa-sign-out'></span>Salir
+                </button>
+            </div>
         </div>
     )
 }

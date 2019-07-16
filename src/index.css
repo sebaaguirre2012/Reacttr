@@ -1,5 +1,4 @@
 body {
-    margin: 0 auto;
     background: #eee;
 }
 
@@ -26,7 +25,7 @@ body {
     background: #fff;
     border: 1px solid #ccc;
     border-radius: 5px;
-    margin: .5rem;
+    /* margin: .5rem; */
     padding: 1rem;
 }
 
@@ -85,7 +84,7 @@ body {
 
 .profileBar {
     display: flex;
-    margin: 1rem;
+    margin: 1rem 0;
     align-items: center;
 }
 
@@ -94,7 +93,6 @@ body {
     color: #fff;
     border: 1px solid #1f6fb1;
     border-radius: 5px;
-    margin: 0 1rem;
     padding: .5rem .75rem;
 }
 
@@ -103,19 +101,18 @@ body {
 
 /* INPUT TEXT */
 
-.text-it {
+/* .text-it {
     border-radius: 5px;
     border: 1px solid #ddd;
     width: 90%;
     height: 5rem;
     padding: .75rem;
-    margin: 1rem; /*1rem .5rem*/
-}
+    margin: 1rem .5rem;
+} */
 
 .buttons-it {
     display: flex;
     justify-content: flex-end;
-
 }
 
 .buttons-it > button {
@@ -126,7 +123,7 @@ body {
 
 .close {
     background: #fff;
-    border: 1px solid #ddd;
+    border: 1px solid black;
 }
 
 .send {

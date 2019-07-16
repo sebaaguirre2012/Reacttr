@@ -15,7 +15,7 @@ export default function MessageList( {messages, onRetweet, onFavorite, onReplyTw
             { messages.map( msg => {
                 return (
                     <Message
-                        key={msg.id} 
+                        key={msg.id}
                         text={msg.text}
                         picture={msg.picture}
                         displayName={msg.displayName}
@@ -23,9 +23,9 @@ export default function MessageList( {messages, onRetweet, onFavorite, onReplyTw
                         date={msg.date}
                         numRetweets={msg.retweets}
                         numFavorites={msg.favorites}
-                        onRetweet={ () => onRetweet(msg.id) }
-                        onFavorite={ () => onFavorite(msg.id) }
-                        onReplyTweet={ () => onReplyTweet(msg.id, msg.username) }
+                        onRetweet={() => onRetweet(msg.id)}
+                        onFavorite={() => onFavorite(msg.id)}
+                        onReplyTweet={() => onReplyTweet(msg.id, msg.username)}
                     />
                 )
             }).reverse()}

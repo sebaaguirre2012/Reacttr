@@ -14,11 +14,22 @@ const proptypes = {
 
 export default class Main extends Component {
     
-    state = {
-        user : Object.assign({}, this.props.user, { retweets : [] }, { favorites : [] }),
-        openText : false,
-        userNameToReply: '',
-        messages : []
+    constructor (props) {
+        super(props)
+    
+        this.state = {
+          user: Object.assign({}, this.props.user, { retweets: [] }, { favorites: [] }),
+          openText: false,
+          userNameToReply: '',
+          messages: []
+        }
+    
+        this.handleSendText = this.handleSendText.bind(this)
+        this.handleCloseText = this.handleCloseText.bind(this)
+        this.handleOpenText = this.handleOpenText.bind(this)
+        this.handleRetweet = this.handleRetweet.bind(this)
+        this.handleFavorite = this.handleFavorite.bind(this)
+        this.handleReplyTweet = this.handleReplyTweet.bind(this)
     }
     
     componentWillMount() {

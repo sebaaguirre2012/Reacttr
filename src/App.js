@@ -8,15 +8,23 @@ import Profile from './components/Profile';
 import Login from './components/Login';
 
 export default class App extends Component {
-    state = {
-        user : null
-    }
+    
+    constructor () {
+        super()
+    
+        this.state = {
+            user: null
+        }
+    
+        this.handleOnAuth = this.handleOnAuth.bind(this)
+        this.handleLogout = this.handleLogout.bind(this)
+      }
     
     componentWillMount () {
         firebase.auth().onAuthStateChanged(user => {
           if (user) {
                 this.setState({ user })
-                console.log(user)
+                // console.log(user)
           } else {
                 this.setState({ user: null })
           }
@@ -40,7 +48,7 @@ export default class App extends Component {
     render() {
         return (
             <BrowserRouter>
-                <div className='container-fluid'>
+                <div className='container-fluid mt-3'>
                     <Header />
 
                     <Switch>
@@ -57,7 +65,7 @@ export default class App extends Component {
                                     <Login onAuth={this.handleOnAuth} />
                                 )
                             }
-                            }}/>
+                        }}/>
                         
                         <Route path='/profile' render={ () => ( 
                             <Profile 
@@ -69,10 +77,9 @@ export default class App extends Component {
                             /> 
                         )}/>
                         
-                        <Route path='/user/:username' render={({ params }) => (
+                        <Route path='/user/:username' render={({ location }) => (
                             <Profile 
-                                displayName={params.username}
-                                username={params.username}
+                                username={location.pathname.split('/')[2]}
                             /> 
                         )}/>
                     </Switch>

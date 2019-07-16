@@ -17,10 +17,16 @@ const proptypes = {
 }
 
 export default class Message extends Component {
+    constructor (props) {
+        super(props);
     
-    state = {
-        pressFavorite : false,
-        pressRetweet : false
+        this.state = {
+            pressFavorite: false,
+            pressRetweet: false
+        }
+    
+        this.onPressRetweet = this.onPressRetweet.bind(this);
+        this.onPressFavorite = this.onPressFavorite.bind(this);
     }
     
     onPressFavorite = () => {
@@ -42,7 +48,7 @@ export default class Message extends Component {
             userLink = `/user/${this.props.username}`;
 
         return (
-            <div className='message'>
+            <div className='message mt-3'>
                 <div className='user'>
                     <Link to={userLink}>
                         <figure>

@@ -9,17 +9,10 @@ import Login from './components/Login';
 
 export default class App extends Component {
     
-    constructor () {
-        super()
-    
-        this.state = {
-            user: null
-        }
-    
-        this.handleOnAuth = this.handleOnAuth.bind(this)
-        this.handleLogout = this.handleLogout.bind(this)
-      }
-    
+    state = {
+        user: null
+    }
+
     componentWillMount () {
         firebase.auth().onAuthStateChanged(user => {
           if (user) {

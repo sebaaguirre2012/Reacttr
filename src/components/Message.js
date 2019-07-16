@@ -17,18 +17,11 @@ const proptypes = {
 }
 
 export default class Message extends Component {
-    constructor (props) {
-        super(props);
-    
-        this.state = {
-            pressFavorite: false,
-            pressRetweet: false
-        }
-    
-        this.onPressRetweet = this.onPressRetweet.bind(this);
-        this.onPressFavorite = this.onPressFavorite.bind(this);
+    state = {
+        pressFavorite: false,
+        pressRetweet: false
     }
-    
+ 
     onPressFavorite = () => {
         this.props.onFavorite();
         this.setState({

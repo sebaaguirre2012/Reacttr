@@ -184,3 +184,14 @@ body {
     background: #aaa;
     color: #eaeaea;
 }
+
+@media screen and (max-width: 457px) {
+    .profileBar {
+        flex-flow: column wrap;
+    }
+
+    .buttons-it {
+        justify-content: space-around;
+        width: 80%;
+    }
+}

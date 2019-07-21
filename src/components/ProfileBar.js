@@ -20,7 +20,7 @@ export default function ProfileBar ({ picture, username, onOpenText, onLogout })
                 </Link>
                 <span className='username-pb'> Hola @{username}!</span>
             </div>
-            <div>
+            <div className='buttons-it'>
                 <button onClick={onOpenText} className='button mr-3'>
                     <span className='fa fa-lg fa-edit'></span> Tweet!
                 </button>
